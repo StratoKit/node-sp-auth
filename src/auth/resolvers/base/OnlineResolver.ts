@@ -14,6 +14,6 @@ export abstract class OnlineResolver implements IAuthResolver {
     this.InitEndpointsMappings();
   }
 
-  public abstract getAuth(): Promise<IAuthResponse>;
+  public abstract getAuth(force?: boolean): Promise<IAuthResponse>;
   protected abstract InitEndpointsMappings(): void;
 }

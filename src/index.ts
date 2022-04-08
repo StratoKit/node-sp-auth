@@ -2,8 +2,12 @@ import { IAuthResponse } from './auth/IAuthResponse';
 import { IAuthOptions } from './auth/IAuthOptions';
 import { AuthResolverFactory } from './auth/AuthResolverFactory';
 
-export function getAuth(url: string, options?: IAuthOptions): Promise<IAuthResponse> {
-  return AuthResolverFactory.resolve(url, options).getAuth();
+export function getAuth(
+  url: string,
+  options?: IAuthOptions,
+  force?: boolean
+): Promise<IAuthResponse> {
+  return AuthResolverFactory.resolve(url, options).getAuth(force);
 }
 
 export * from './auth/IAuthOptions';

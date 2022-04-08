@@ -42,13 +42,13 @@ export class OnlineUserCredentials extends OnlineResolver {
       .replace(/>/g, '&gt;');
   }
 
-  public getAuth(): Promise<IAuthResponse> {
+  public getAuth(force?: boolean): Promise<IAuthResponse> {
     const parsedUrl: url.Url = url.parse(this._siteUrl);
     const host: string = parsedUrl.host;
     const cacheKey = `${host}@${this._authOptions.username}@${this._authOptions.password}`;
     const cachedCookie: string = OnlineUserCredentials.CookieCache.get<string>(cacheKey);
 
-    if (cachedCookie) {
+    if (!force && cachedCookie) {
       return Promise.resolve({
         headers: {
           'Cookie': cachedCookie
